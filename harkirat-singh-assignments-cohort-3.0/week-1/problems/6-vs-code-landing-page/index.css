@@ -176,8 +176,8 @@ nav a:hover {
 
 .language .container {
     display: grid;
-    grid-template-columns: 1fr 2fr;
     column-gap: 2rem;
+    grid-template-columns: 1fr 2fr;
 }
 
 .language .container p {
