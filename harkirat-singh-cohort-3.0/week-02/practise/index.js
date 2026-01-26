@@ -37,3 +37,40 @@
 // validateIdentifier("username", function(isValid, message){
 //   console.log(message);
 // })
+
+
+// Promises :
+// let promise = new Promise(callback);
+// let promise = new Promise(function(resolve, reject){
+// });
+// console.log(promise);
+
+// let num = 73;
+// const promise1 = new Promise((resolve, reject) => {
+//   if(num == 73){
+//     resolve('The value of the number is 73.')
+//   }
+//   else{
+//     reject('The value of the number is not 73.')
+//   }
+// });
+// console.log(promise1);
+// console.log("" + promise1);
+
+// .then() - Method
+const num = 10;
+const promise1 = new Promise(function (resolve, reject){
+  if(num ==10){
+    resolve('The value of the number is 10');
+  }
+  else{
+    reject('The valuse of the number is not 10.')
+  }
+});
+promise1.then(successFunc, errorFunc);
+function successFunc(message){
+  document.getElementById('output').innerHTML += message;
+}
+function errorFunc(message){
+  document.getElementById('output').innerHTML += message;
+}
