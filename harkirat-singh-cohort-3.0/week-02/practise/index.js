@@ -58,19 +58,33 @@
 // console.log("" + promise1);
 
 // .then() - Method
-const num = 10;
-const promise1 = new Promise(function (resolve, reject){
-  if(num ==10){
-    resolve('The value of the number is 10');
-  }
-  else{
-    reject('The valuse of the number is not 10.')
-  }
+// const num = 10;
+// const promise1 = new Promise(function (resolve, reject){
+//   if(num ==10){
+//     resolve('The value of the number is 10');
+//   }
+//   else{
+//     reject('The valuse of the number is not 10.')
+//   }
+// });
+// promise1.then(successFunc, errorFunc);
+// function successFunc(message){
+//   document.getElementById('output').innerHTML += message;
+// }
+// function errorFunc(message){
+//   document.getElementById('output').innerHTML += message;
+// }
+
+// .catch() - Method
+var num = 10;
+const promise = new Promise((resolve, reject) => {
+   reject("Promise is rejected!");
 });
-promise1.then(successFunc, errorFunc);
-function successFunc(message){
-  document.getElementById('output').innerHTML += message;
-}
-function errorFunc(message){
-  document.getElementById('output').innerHTML += message;
-}
+promise
+.then((message) => {
+   output.innerHTML += message;
+})
+.catch((message) => {
+   document.getElementById('output').innerHTML += "Inside the catch() method.<br>";
+   document.getElementById('output').innerHTML += message;
+});
