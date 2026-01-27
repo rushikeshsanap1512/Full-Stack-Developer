@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM - Simple</title>
+</head>
+<body>
+  <!-- <h1>Todo List</h1>
+  <h4 id="todo1">1. Take Class</h4>
+  <h4 id="todo2">2. Go out to eat</h4>
+  <h4 id="todo3">3. Go To Gym</h4> -->
+
+  <!-- <h4 id="todo3">4. Go To Gym</h4>
+  <h4 class="todo">5. Running</h4>
+  <h4 class="todo">6. Swimming</h4>
+  <h4 class="todo">7. Reading</h4>
+  <h4 class="todo">8. Reading</h4> -->
+
+  <div id="todo-1" style="display: flex;">
+    <h4>1. Take class.</h4>
+    <button onclick="deleteTodo(1)" style="margin-left: 32px; margin-bottom: 5px; margin-top: 5px; background-color: turquoise;">Delete</button>
+  </div>
+  <div id="todo-2" style="display: flex;">
+    <h4>2. Go out ot eat.</h4>
+    <button onclick="deleteTodo(2)" style="margin-left: 13px; margin-bottom: 5px; margin-top: 5px; background-color: turquoise;" >Delete</button>
+  </div>
+  <div style="margin-top: 10px;">
+    <input type="text">
+    <button onclick="addTodo()">Add Todo</button>
+  </div>
+  <script src="script.js">
+    function addTodo(){
+      // const inputElement = document.querySelector('input').value;
+      // console.log(inputElement);
+    }
+    
+  </script>
+</body>
+</html>
