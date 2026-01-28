@@ -17,24 +17,54 @@
   <h4 class="todo">7. Reading</h4>
   <h4 class="todo">8. Reading</h4> -->
 
-  <div id="todo-1" style="display: flex;">
-    <h4>1. Take class.</h4>
-    <button onclick="deleteTodo(1)" style="margin-left: 32px; margin-bottom: 5px; margin-top: 5px; background-color: turquoise;">Delete</button>
-  </div>
-  <div id="todo-2" style="display: flex;">
-    <h4>2. Go out ot eat.</h4>
-    <button onclick="deleteTodo(2)" style="margin-left: 13px; margin-bottom: 5px; margin-top: 5px; background-color: turquoise;" >Delete</button>
+  <!-- <div id="todoParent">
+    <div id="todo-1" style="display: flex;">
+      <h4>1. Take class.</h4>
+      <button onclick="deleteTodo(1)" style="margin-left: 32px; margin-bottom: 5px; margin-top: 5px; background-color: turquoise;">Delete</button>
+    </div>
+    <div id="todo-2" style="display: flex;">
+      <h4>2. Go out ot eat.</h4>
+      <button onclick="deleteTodo(2)" style="margin-left: 13px; margin-bottom: 5px; margin-top: 5px; background-color: turquoise;" >Delete</button>
+    </div>
   </div>
   <div style="margin-top: 10px;">
     <input type="text">
     <button onclick="addTodo()">Add Todo</button>
-  </div>
-  <script src="script.js">
-    function addTodo(){
-      // const inputElement = document.querySelector('input').value;
-      // console.log(inputElement);
-    }
+  </div> -->
+
+    <!-- <h2>Todo 1</h2>
+    <h2>Todo 2</h2>
+    <h2>Todo 3</h2>
+    <button onclick="deleteRandomTodo()">Updating Todo!</button> -->
+
+    <div id="topDiv">
+      Hi there!
+    </div>
+
+  <script>
+    const divEl = document.createElement('div');
+    divEl.innerHTML = "Hello There!!!";
+    document.querySelector('body').appendChild(divEl);
     
+
+
+    // function addTodo(){
+    //   // const inputElement = document.querySelector('input').value;
+    //   // console.log(inputElement);
+    // }
+    // function deleteTodo(index){
+    //   const element = document.getElementById("todo-" + index);
+    //   document.getElementById('todoParent').removeChild(element);
+    // }
+    
+    // function deleteRandomTodo(){
+    //   // const element = document.querySelector('h2').innerHTML = "Something New!"
+    //   // const element = document.querySelector('h2');
+    //   // const parentElement = element.parentNode
+    //   // parentElement.removeChild(element);
+    //   // OR
+    //   document.querySelector('h2').parentNode.removeChild(document.querySelector('h2'));
+    // }
   </script>
 </body>
 </html>
