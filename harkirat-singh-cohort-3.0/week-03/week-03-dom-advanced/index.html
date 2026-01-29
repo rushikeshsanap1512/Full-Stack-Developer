@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Todo App</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <input type="text" placeholder="Enter Task">
+    <button onclick="addTodo()">Add Todo</button>
+
+    <script>
+      function addTodo(){
+        const value = document.querySelector('input').value;
+
+        const spanElement = document.createElement('span');
+        const buttonElement = document.createElement('button');
+        spanElement.innerHTML = value;
+        buttonElement.innerHTML = "Delete";
+        
+        const divElement = document.createElement('div');
+        divElement.appendChild(spanElement);
+        divElement.appendChild(buttonElement);
+
+        document.querySelector('body').appendChild(divElement);
+      }
+    </script>
+  </body>
+</html>
