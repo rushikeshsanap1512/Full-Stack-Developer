@@ -1,36 +1,12 @@
 const express = require("express");
 const app = express();
+const { userRouter } = require("./routes/user");
+const { courseRouter } = require("./routes/course");
 
-app.post("/user/signup", (req, res) => {
-  res.json({
-    message: "signup endpoint",
-  });
-});
+app.use("/user", userRouter);
+app.use("/course", courseRouter);
 
-app.post("/user/signin", (req, res) => {
-  res.json({
-    message: "signin endpoint",
-  });
-});
-
-app.get("/user/purchases", (req, res) => {
-  res.json({
-    message: "purchases endpoint",
-  });
-});
-
-app.post("/course/purchase", (req, res) => {
-  res.json({
-    message: "purchase endpoint",
-  });
-});
-
-app.get("/course/preview", (req, res) => {
-  res.json({
-    message: "preview endpoint",
-  });
-});
 
 app.listen(3000, () => {
-    console.log("Server is running on port 3000");
-})
+  console.log("Server is running on port 3000.");
+});
