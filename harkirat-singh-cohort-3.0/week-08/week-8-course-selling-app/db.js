@@ -3,7 +3,6 @@
 const { Schema, default: mongoose } = require('mongoose');
 const ObjectId = mongoose.ObjectId;
 console.log("Connected to: ");
-mongoose.connect("mongodb+srv://admin:Rushi%401512@cluster0.tnbw87l.mongodb.net/coursera-app");
 
 const userSchema = new Schema({
     id: ObjectId,
@@ -45,7 +44,7 @@ const courseModel = mongoose.model("course", courseSchemaa);
 
 const purchaseModel = mongoose.model("purchase", purchaseSchema);
 
-module.export = {
+module.exports = {
     usersModel,
     courseModel,
     adminModel,
