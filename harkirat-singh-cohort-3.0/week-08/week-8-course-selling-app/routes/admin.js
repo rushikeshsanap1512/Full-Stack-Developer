@@ -3,10 +3,10 @@ const { adminModel } = require("../db");
 
 const adminRouter = Router();
 
-adminRouter.post("/signup", (req, res) => {
-  res.json({
-    message: "signup endpoint",
-  });
+adminRouter.post("/signup", async (req, res) => {
+    res.json({
+        message: "signup endpoint",
+    });
 });
 
 adminRouter.post("/signin", (req, res) => {
@@ -15,13 +15,13 @@ adminRouter.post("/signin", (req, res) => {
   });
 });
 
-adminRouter.post("/course", (req, res) => {
+adminRouter.post("/course/", (req, res) => {
     res.json({
         message: "admin course endpoint"
     });
 });
 
-adminRouter.put("/course", (req, res) => {
+adminRouter.put("/course/", (req, res) => {
     res.json({
         message: "admin course endpoint"
     });

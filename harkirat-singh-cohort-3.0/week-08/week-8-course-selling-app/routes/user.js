@@ -23,6 +23,11 @@ userRouter.get("/purchases", (req, res) => {
   });
 });
 
+function auth(req, res, next) {
+    const token = req.headers.token;
+    
+}
+
 module.exports = {
   userRouter: userRouter
 };
