@@ -4,6 +4,8 @@ const { JWT_USER_PASSWORD } = require("../config");
 function userMiddleware(req, res, next) {
     const token = req.headers.token;
     const decoded = jwt.verify(token, JWT_USER_PASSWORD);
+    console.log("user decoded is: " + decoded);
+
 
     if (decoded) {
         req.userId = decoded.id;

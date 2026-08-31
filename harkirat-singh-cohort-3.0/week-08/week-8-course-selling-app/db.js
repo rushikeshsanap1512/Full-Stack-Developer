@@ -5,7 +5,6 @@ const ObjectId = mongoose.ObjectId;
 console.log("Connected to: ");
 
 const userSchema = new Schema({
-    id: ObjectId,
     email: {type: String, unique: true},
     password: String,
     firstName: String,
@@ -13,7 +12,6 @@ const userSchema = new Schema({
 });
 
 const adminSchema = new Schema({
-    id: ObjectId,
     email: {type: String, unique: true},
     password: String,
     firstName: String,
@@ -21,7 +19,6 @@ const adminSchema = new Schema({
 });
 
 const courseSchemaa = new Schema({
-    id: ObjectId,
     title: String,
     description: String,
     price: Number,
@@ -31,7 +28,6 @@ const courseSchemaa = new Schema({
 
 
 const purchaseSchema = new Schema({
-    id: ObjectId,
     userId: ObjectId,
     courseId: ObjectId
 });
