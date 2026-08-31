@@ -3,19 +3,23 @@
 
 const { Router } = require("express");
 const userRouter = Router();
-const { usersModel } = require("../db");
+const { usersModel, purchaseModel, courseModel } = require("../db");
 const { z } = require("zod");
 const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const { JWT_USER_PASSWORD } = require("../config");
 const { userMiddleware } = require("../middleware/user");
 
 userRouter.post("/signup", async (req, res) => {
   const requireBody = z.object({
-    email: z.string().min(3).max(100).refine((e) => e.includes("@")),
+    email: z
+      .string()
+      .min(3)
+      .max(100)
+      .refine((e) => e.includes("@")),
     password: z.string().min(3).max(30),
     firstName: z.string().min(2).max(20),
-    lastName: z.string().min(3).max(20)
+    lastName: z.string().min(3).max(20),
   });
 
   const parseDataWithSuccess = requireBody.safeParse(req.body);
@@ -23,7 +27,7 @@ userRouter.post("/signup", async (req, res) => {
   if (!parseDataWithSuccess.success) {
     res.json({
       message: "Incorrect format",
-      error: parseDataWithSuccess.error
+      error: parseDataWithSuccess.error,
     });
     return;
   }
@@ -37,30 +41,29 @@ userRouter.post("/signup", async (req, res) => {
       email: email,
       password: hashPassword,
       firstName: firstName,
-      lastName: lastName
+      lastName: lastName,
     });
-  
+
     res.json({
       message: "signed up succeeded.",
     });
   } catch (error) {
     res.json({
-      message: "Email already exists"
+      message: "Email already exists",
     });
   }
-
 });
 
 userRouter.post("/signin", async (req, res) => {
   const { email, password } = req.body;
 
   const response = await usersModel.findOne({
-    email: email
+    email: email,
   });
 
   if (!response) {
     res.json({
-      message: "User does not exist in our db"
+      message: "User does not exist in our db",
     });
     return;
   }
@@ -68,28 +71,40 @@ userRouter.post("/signin", async (req, res) => {
   const passwordMatch = await bcrypt.compare(password, response.password);
 
   if (passwordMatch) {
-    const token = jwt.sign({
-      id: response._id.toString()
-    }, JWT_USER_PASSWORD);
+    const token = jwt.sign(
+      {
+        id: response._id.toString(),
+      },
+      JWT_USER_PASSWORD,
+    );
 
     res.json({
-      token: token
+      token: token,
     });
-  }
-  else {
+  } else {
     res.json({
-      message: "Invalid credentials"
+      message: "Invalid credentials",
     });
   }
-
 });
 
-userRouter.get("/purchases", userMiddleware, (req, res) => {
+userRouter.get("/purchases", userMiddleware, async (req, res) => {
+  const userId = req.userId;
+
+  const purchases = await purchaseModel.find({
+    userId,
+  });
+
+  const coursesData = await courseModel.find({
+    _id: { $in: purchases.map((x) => x.courseId) },
+  });
+
   res.json({
-    message: "purchases endpoint",
+    purchases,
+    coursesData,
   });
 });
 
 module.exports = {
-  userRouter: userRouter
+  userRouter: userRouter,
 };

@@ -87,7 +87,7 @@ adminRouter.post("/signin", async (req, res) => {
 
 adminRouter.post("/course", adminMiddleware, async (req, res) => {
   const adminId = req.userId;
-  const { title, description, price, imageUrl, creatorId } = req.body;
+  const { title, description, price, imageUrl } = req.body;
 
   console.log("Creating course");
   console.log("adminId:", adminId);
