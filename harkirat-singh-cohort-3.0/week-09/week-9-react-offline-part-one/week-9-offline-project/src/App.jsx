@@ -1,29 +1,42 @@
-// notification count code
 import { useState } from "react";
+import { PostComponent } from "./Post";
 
 function App() {
-  return (
-    <div style={{ background: "#dfe6e9", height: "100vh" }}>
-      <ToggleMessage />
-      <ToggleMessage />
-      <ToggleMessage />
-    </div>
-  );
-}
+  const [posts, setPosts] = useState([]);
 
-const ToggleMessage = () => {
-  let [notificationCount, setNotificationCount] = useState(0);
+  const postComponents = posts.map((post) => (
+    <PostComponent
+      name={post.name}
+      subtitle={post.subtitle}
+      time={post.time}
+      image={post.image}
+      description={post.description}
+    />
+  ));
 
-  function increment() {
-    setNotificationCount((notificationCount = notificationCount + 1));
+  function addPost() {
+    setPosts([
+      ...posts,
+      {
+        name: "harkirat",
+        subtitle: "10000 followere",
+        time: "2m ago",
+        image:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt5KU4VBx2aIvtVgLp5NfjoWU3Xj3phhaRQmI7pPQrhA&s=10",
+        description:
+          "What to know how to win big? Check out how these folks won $6000 inbounties.",
+      },
+    ]);
   }
 
   return (
-    <div>
-      <button onClick={increment}>Increase count</button>
-      {notificationCount}
+    <div style={{ background: "#dfe6e9", height: "100vh" }}>
+      <button onClick={addPost}>Add post</button>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <div>{postComponents}</div>
+      </div>
     </div>
   );
-};
+}
 
 export default App;
