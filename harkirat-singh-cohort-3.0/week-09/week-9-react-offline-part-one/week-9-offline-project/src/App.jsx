@@ -1,71 +1,42 @@
-// import { useState } from "react";
-
-// function App() {
-//   return (
-//     <div style={{ display: "flex", background: "gray" }}>
-//       <Card>
-//         {
-//           <div style={{ color: "green" }}>
-//             What do you want to post here?
-//             <br />
-//             <br />
-//             <input type={"text"} />
-//           </div>
-//         }
-//       </Card>
-//       <Card>
-//         <div>"Hi There!"</div>
-//       </Card>
-//     </div>
-//   );
-// }
-
-// function Card({ children }) {
-//   return (
-//     <span
-//       style={{
-//         background: "white",
-//         borderRadius: 10,
-//         color: "black",
-//         padding: 10,
-//         margin: 10,
-//       }}
-//     >
-//       {children}
-//     </span>
-//   );
-// }
-
-const Card = ({ children }) => {
-  return (
-    <div
-      style={{
-        border: "1px solid #ccc",
-        borderRadius: "5px",
-        padding: "20px",
-        margin: "10px",
-        boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.1)",
-      }}
-    >
-      {children}
-    </div>
-  );
-};
+import { useState, useEffect } from "react";
 
 const App = () => {
+  const [isComponentShown, setIsComponentShown] = useState(true);
+
+  useEffect(() => {
+    setInterval(() => {
+        setIsComponentShown((x) => !x);
+    }, 5000);
+  }, []);
+
+
   return (
     <div>
-      <Card>
-        <h2>Card Title</h2>
-        <p>This is some content inside the card.</p>
-      </Card>
-      <Card>
-        <h2>Another Card</h2>
-        <textarea type={"text"}></textarea>
-        <p>This card has different content!</p>
-      </Card>
+      {isComponentShown && <MyComponent />}
     </div>
   );
 };
+
+function MyComponent() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("Component mounted or count updated");
+  }, [count]);
+
+  useEffect(() => {
+    console.log("Component mounted");
+    return () => {
+      console.log("Component will unmount");
+    };
+  }, []);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
 
 export default App;
