@@ -1,69 +1,50 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-  Outlet,
-} from "react-router-dom";
+// import { useRef } from "react";
+
+// function App() {
+//   const inputRef = useRef();
+
+//   function focusOnInput() {
+//     // document.getElementById("name").focus();
+//     inputRef.current.focus();
+//   }
+
+//   return (
+//     <div>
+//       Sign Up
+//       <input ref={inputRef} type={"text"} />
+//       <input type={"text"} />
+//       <button onClick={focusOnInput}>Submit</button>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+import { useState, useRef } from "react";
 
 function App() {
-  return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route path="/neet" element={<Landing />} />
-            <Route
-              path="/neet/online-coaching-class-11"
-              element={<Class11Program />}
-            />
-            <Route
-              path="/neet/online-coaching-class-12"
-              element={<Class12Program />}
-            />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
-  );
-}
+  const [currentCount, setCurrentCount] = useState(1);
+  const timer = useRef();
 
-function Layout() {
-  return (
-    <div style={{ height: "100vh" }}>
-      <Link to="/neet">Allen</Link>
-      <Link to="/neet/online-coaching-class-11">Class 11</Link>
-      <Link to="/neet/online-coaching-class-12">Class 12</Link>
-      <div style={{ height: "90vh" }}>
-        <Outlet />
-      </div>
-      Footer
-    </div>
-  );
-}
-
-function Landing() {
-  return <div>Welcome to allen</div>;
-}
-
-function Class11Program() {
-  return <div>NEET courses for Class 11th</div>;
-}
-
-function Class12Program() {
-  const navigate = useNavigate();
-
-  function redirect() {
-    navigate("/");
+  function startClock(){
+    let value = setInterval(function () {
+      setCurrentCount(timer => timer + 1);
+    }, 1000);
+    timer.current = value;
   }
 
-  return (
-    <div>
-      NEET courses for Class 12th
-      <button onClick={redirect}>Go back to landing page</button>
-    </div>
-  );
+  function stopClock() {
+    console.log(timer);
+    clearInterval(timer.current);
+  }
+
+  return <div>
+    {currentCount}
+    <br />
+    <button onClick={startClock}>Start</button>
+    <button onClick={stopClock}>Stop</button>
+  </div>
 }
 
 export default App;
