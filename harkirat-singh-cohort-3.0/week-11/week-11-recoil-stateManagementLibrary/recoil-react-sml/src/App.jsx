@@ -1,70 +1,48 @@
-import { useState } from "react";
-import { RecoilRoot, useRecoilValue, useSetRecoilState } from "recoil";
-import { counterAtom } from "./store/atoms/counter";
+import './store/atoms/counter.js';
+import { RecoilRoot, useSetRecoilState, useRecoilValue } from 'recoil';
+import { counterAtom, evenSelector } from './store/atoms/counter.js';
 
 function App() {
-  
-  return (
+  return <div>
     <RecoilRoot>
-      <div style={{ display: "flex", justifyContent: "center", alignContent: "center"}}>
-        <Counter />
-      </div>
+      <Buttons />
+      <Counter />
+      <IsEven />
     </RecoilRoot>
-  );
+  </div>
 }
 
-function Counter() {
-  return (
-    <>
-      <div style={{marginRight: 50, marginTop: 50}}>
-        <CurrentCount />
-      </div>
-      <div style={{marginLeft: 20, marginTop: 50}}>
-        <Increase />
-      </div>
-      <div style={{marginLeft: 20, marginTop: 50}}>
-        <Decrease />
-      </div>
-    </>
-  );
-}
-
-function CurrentCount() {
-  const count = useRecoilValue(counterAtom);
-  return (
-    <div>
-      Count: {count}
-    </div>
-  )
-}
-
-function Increase() {
+function Buttons() {
   const setCount = useSetRecoilState(counterAtom);
-  function increase() {
-      console.log("increase render");
 
-    setCount(c => c + 1);
+  function increase() {
+    setCount(c => c + 2);
   }
 
-  return (
-    <>
-      <button onClick={increase}>Increase Button</button>
-    </>
-  );
-}
-
-function Decrease() {
-  const setCount = useSetRecoilState(counterAtom);
   function decrease() {
-    console.log("decrease render");
     setCount(c => c - 1);
   }
 
-  return (
-    <>
-      <button onClick={decrease}>Decrease Button</button>
-    </>
-  );
+  return <div>
+    <button onClick={increase}>Increase</button>
+    <button onClick={decrease}>Decrease</button>
+  </div>
+}
+
+function Counter() {
+  const count = useRecoilValue(counterAtom);
+
+  return <div>
+    {count}
+  </div>
+}
+
+function IsEven() {
+  const count = useRecoilValue(evenSelector);
+
+  return <div>
+    {count ? "even" : "odd"}
+  </div>
 }
 
 export default App;
