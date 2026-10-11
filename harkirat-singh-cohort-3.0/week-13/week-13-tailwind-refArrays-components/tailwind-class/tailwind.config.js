@@ -6,8 +6,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        red: {
-          500: "blue"
+        blue: {
+          200: "#8094ad",
+          500: "#19406a",
+          700: "#002b5b"
+        },
+        green: {
+          400: "#36c6c0"
         }
       }
     },
